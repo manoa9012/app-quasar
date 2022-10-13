@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ResponseLogin } from 'src/models/FormLogin';
+import { Profile } from 'src/models/Profile';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -9,6 +10,7 @@ export const useAuthStore = defineStore('auth', {
   }),
   getters: {
     getProfile: (state) => state.profile,
+    getName: (state) => (state.profile as Profile).fullname,
     loggedIn: (state) => state.accessToken != '',
   },
   actions: {
