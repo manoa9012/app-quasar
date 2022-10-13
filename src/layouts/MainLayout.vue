@@ -127,6 +127,7 @@ export default defineComponent({
       essentialLinks: linksList,
       leftDrawerOpen,
       storeauth,
+      light,
       changemode,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
