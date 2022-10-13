@@ -33,6 +33,13 @@
                       <q-item-section>Medical History</q-item-section>
                     </q-item></q-list
                   >
+                  <q-separator />
+
+                  <q-toggle
+                    v-model="light"
+                    @click="changemode"
+                    label="Dark mode"
+                  />
                 </div>
 
                 <q-separator vertical inset class="q-mx-lg" />
@@ -86,7 +93,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-
+import { useQuasar } from 'quasar';
 import { useAuthStore } from 'src/stores/auth-store';
 
 const linksList = [
@@ -108,12 +115,19 @@ export default defineComponent({
   name: 'MainLayout',
 
   setup() {
+    const $q = useQuasar();
     const leftDrawerOpen = ref(false);
     const storeauth = useAuthStore();
+    const light = ref(true);
+    const changemode = () => {
+      $q.dark.toggle();
+    };
+
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       storeauth,
+      changemode,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
